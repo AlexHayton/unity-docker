@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:bionic
 
 # http://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/
 
@@ -48,10 +48,9 @@ RUN apt-get update && apt-get install -y \
       xvfb \
       libgtk2.0-dev libsoup2.4-dev libarchive-dev libpng-dev
 
-RUN wget -O /tmp/installer http://beta.unity3d.com/download/3c89f8d277f5/UnitySetup-2017.3.0f1 && mkdir -p /unity && chmod 755 /tmp/installer
+RUN wget -O /tmp/installer https://beta.unity3d.com/download/79b540374219/UnitySetup-2017.4.2f2 && mkdir -p /unity && chmod 755 /tmp/installer
 # RUN yes | /tmp/installer  --unattended --components=Unity --install-location=/unity
 RUN yes | /tmp/installer  --unattended --components=Unity,Android,iOS,Mac,WebGL,Windows --install-location=/unity
 
 # RUN wget -O /tmp/unity.deb http://beta.unity3d.com/download/ddd95e743b51/unity-editor_amd64-5.6.2xf1Linux.deb && dpkg -i /tmp/unity.deb && rm /tmp/unity.deb
-
-# unity: /unity/Editor/Unity
+CMD ["/unity/Editor/Unity"]
